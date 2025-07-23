@@ -12,15 +12,15 @@ async function main() {
       name: 'alice',
       Balance: {
         create: {
-            amount: 20000,
-            locked: 0
+          amount: 200000,
+          locked: 0
         }
       },
       OnRampTransaction: {
         create: {
           startTime: new Date(),
           status: "Success",
-          amount: 20000,
+          amount: 200000,
           token: "token__1",
           provider: "HDFC Bank",
         },
@@ -36,8 +36,8 @@ async function main() {
       name: 'bob',
       Balance: {
         create: {
-            amount: 2000,
-            locked: 0
+          amount: 2000,
+          locked: 0
         }
       },
       OnRampTransaction: {
