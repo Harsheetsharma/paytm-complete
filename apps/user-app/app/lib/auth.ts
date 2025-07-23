@@ -1,6 +1,7 @@
 import db from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt";
+import { signIn, signOut } from "next-auth/react";
 
 export const authOptions = {
     providers: [
@@ -61,5 +62,9 @@ export const authOptions = {
 
             return session
         }
+    },
+    pages: {
+        signIn: '/pages/signin',
+        signOut: '/pages/signout'
     }
 }
