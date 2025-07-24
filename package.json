@@ -2,7 +2,7 @@
   "name": "week-18",
   "private": true,
   "scripts": {
-    "build": "turbo build",
+    "build": "prisma generate && turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "db:generate": "cd packages/db && npx prisma generate && cd ../..",
