@@ -5,9 +5,9 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-     "db:generate": "cd packages/db && npx prisma generate && cd ../..",
+    "db:generate": "cd packages/db && npx prisma generate && cd ../..",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-     "start-user-app": "cd ./apps/user-app && npm run start"
+    "start-user-app": "cd ./apps/user-app && npm run start"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
@@ -22,5 +22,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "lucide-react": "^0.525.0"
+  }
 }

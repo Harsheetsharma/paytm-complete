@@ -9,9 +9,13 @@ interface ButtonProps {
 
 export const Button = ({ onClick, children }: ButtonProps) => {
   return (
-    <button onClick={onClick} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+    <button
+      onClick={onClick}
+      type="button"
+      className="text-black bg-white border hover:bg-blue-600  hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 transition-colors duration-200 ease-in-out
+"
+    >
       {children}
     </button>
-
   );
 };
