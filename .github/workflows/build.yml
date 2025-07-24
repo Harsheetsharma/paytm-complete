@@ -5,6 +5,7 @@ on:
     branches: 
       -migration
 
+
 jobs:
   build:
     name: Build the project
