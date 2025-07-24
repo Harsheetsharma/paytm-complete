@@ -2,8 +2,8 @@ name: Build Succeeds on PR
 
 on:
   pull_request:
-    branches:
-      - master
+    branches: 
+      -migration
 
 jobs:
   build:
