@@ -1,11 +1,11 @@
 FROM node:20.12.0-alpine3.19
 
-WORKDIR usr/src/app
+WORKDIR /usr/src/app
 
 COPY package.json package-lock.json tsconfig.json turbo.json ./
 
 COPY apps ./apps
-COPY package ./packages
+COPY packages ./packages
 
 RUN npm install 
 
