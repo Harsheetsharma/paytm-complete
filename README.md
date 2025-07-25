@@ -58,11 +58,11 @@ paytm-complete/
 git clone https://github.com/Harsheetsharma/paytm-complete.git
 cd paytm-complete
 ```
-### Install Dependencies
+### 2. Install Dependencies
 ```
 npm install
 ```
-### Set up Environment Variables
+### 3. Set up Environment Variables
 Create a .env file in the root and in packages/db based on .env.example.
 ```
 # Root .env
@@ -70,7 +70,7 @@ DATABASE_URL=docker_database_URL
 NEXTAUTH_SECRET=your-secret
 NEXTAUTH_URL=http://localhost:3000
 ```
-### Migrate Database
+### 4. Migrate Database
 ```
 cd packages/db
 npx prisma migrate dev
