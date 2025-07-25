@@ -13,7 +13,7 @@ This is a full-stack Paytm clone built with **Next.js**, **Prisma**, and **Postg
 | Auth        | NextAuth.js (Credentials)    |
 | Database    | PostgreSQL                   |
 | DevOps      | GitHub Actions (CI/CD), Vercel |
-| Monorepo    | Turborepo structure (assumed) |
+| Monorepo    | Turborepo structure  |
 
 ---
 
