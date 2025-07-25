@@ -6,14 +6,14 @@ This is a full-stack Paytm clone built with **Next.js**, **Prisma**, and **Postg
 
 ## 🚀 Tech Stack
 
-| Layer       | Technology                  |
+| Layer       | Technology                   |
 |-------------|------------------------------|
 | Frontend    | Next.js, Tailwind CSS        |
 | Backend     | Next.js API Routes, Prisma   |
 | Auth        | NextAuth.js (Credentials)    |
-| Database    | PostgreSQL                   |
-| DevOps      | GitHub Actions (CI/CD), Vercel |
-| Monorepo    | Turborepo structure  |
+| Database    | PostgreSQL (Docker)          |
+| DevOps      | GitHub Actions (CI/CD)       |
+| Monorepo    | Turborepo structure          |
 
 ---
 
