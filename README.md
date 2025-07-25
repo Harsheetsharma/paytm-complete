@@ -1,20 +1,78 @@
-- Clone the repo
+# 💸 Paytm Clone - Full Stack Application
 
-```jsx
-git clone https://github.com/100xdevs-cohort-2/week-17-final-code
+This is a full-stack Paytm clone built with **Next.js**, **Prisma**, and **PostgreSQL**, supporting real-time transaction tracking, user authentication, merchant payments, and balance management. It follows modern development practices with a **monorepo structure** and **CI/CD integration**.
+
+---
+
+## 🚀 Tech Stack
+
+| Layer       | Technology                  |
+|-------------|------------------------------|
+| Frontend    | Next.js, Tailwind CSS        |
+| Backend     | Next.js API Routes, Prisma   |
+| Auth        | NextAuth.js (Credentials)    |
+| Database    | PostgreSQL                   |
+| DevOps      | GitHub Actions (CI/CD), Vercel |
+| Monorepo    | Turborepo structure (assumed) |
+
+---
+
+## ✨ Features
+
+- ✅ User registration and login (NextAuth credentials provider)
+- 💰 Balance management for users
+- 🏬 Merchant payment flow
+- 📲 On-ramp transaction history
+- 🔐 Secure session-based authentication
+- 🧾 Transaction ledger per user
+- 📦 Clean monorepo structure
+- 🔄 Continuous deployment (CI/CD)
+
+---
+
+## 📁 Project Structure
+
+paytm-complete/
+```
+│
+├── apps/
+│ └── user-app/ # Next.js frontend
+│
+├── packages/
+│ ├── db/ # Prisma schema and DB logic
+│ ├── config/ # Shared configs (env, auth, etc.)
+│
+├── prisma/ # Migrations & seed
+│
+├── .github/workflows/ # CI/CD configs
+├── .env.example # Sample environment variables
+└── README.md
+
 ```
 
-- npm install
-- Run postgres either locally or on the cloud (neon.tech)
+## 🛠️ Setup Instructions
 
-```jsx
-docker run  -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Harsheetsharma/paytm-complete.git
+cd paytm-complete
 ```
-
-- Copy over all .env.example files to .env
-- Update .env files everywhere with the right db url
-- Go to `packages/db`
-  - npx prisma migrate dev
-  - npx prisma db seed
-- Go to `apps/user-app` , run `npm run dev`
-- Try logging in using phone - 1111111111 , password - alice (See `seed.ts`)
+### Install Dependencies
+```
+npm install
+```
+### Set up Environment Variables
+Create a .env file in the root and in packages/db based on .env.example.
+```
+# Root .env
+DATABASE_URL=docker_database_URL
+NEXTAUTH_SECRET=your-secret
+NEXTAUTH_URL=http://localhost:3000
+```
+### Migrate Database
+```
+cd packages/db
+npx prisma migrate dev
+npx prisma generate
+```
