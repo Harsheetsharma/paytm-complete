@@ -1,9 +1,10 @@
 # 💸 Paytm Clone - Full Stack Application
 
-This is a full-stack Paytm clone built with **Next.js**, **Prisma**, and **PostgreSQL**, supporting real-time transaction tracking, user authentication, merchant payments, and balance management. It follows modern development practices with a **monorepo structure** and **CI/CD integration**.
+This is a full-stack Paytm clone built with **Next.js**, **Prisma**, and **PostgreSQL**, supporting real-time transaction tracking, user authentication,Stripe payments , and balance management. It follows modern development practices with a **monorepo structure** and **CI/CD integration**.
 
 ---
-
+✅ Stripe payment integration (Checkout flow)
+---
 ## 🚀 Tech Stack
 
 | Layer       | Technology                   |
