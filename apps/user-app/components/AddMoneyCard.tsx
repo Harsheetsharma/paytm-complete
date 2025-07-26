@@ -6,6 +6,7 @@ import { Select } from "@repo/ui/select";
 import { useState } from "react";
 import { TextInput } from "@repo/ui/textinput";
 import { dataCall } from "../app/lib/actions/createOnRampTxn";
+import { StripePayment } from "./stripePayment";
 
 const SUPPORTED_BANKS = [
   {
@@ -58,6 +59,7 @@ export const AddMoney = () => {
           >
             Add Money
           </Button>
+          <StripePayment amount={amount}></StripePayment>
         </div>
       </div>
     </Card>

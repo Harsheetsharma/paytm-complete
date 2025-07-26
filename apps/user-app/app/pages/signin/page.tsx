@@ -5,6 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { error } from "console";
+import { ArrowLeft } from "lucide-react";
 
 export default function SignInPage() {
   const [number, setNumber] = useState(0);
@@ -12,10 +13,12 @@ export default function SignInPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const [loader, setLoader] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle sign in logic here
+    setLoader(true);
     const result = await signIn("credentials", {
       redirect: false,
       phone: number,
@@ -28,8 +31,18 @@ export default function SignInPage() {
     console.log("Sign in attempt:", { number, password, rememberMe });
   };
 
+  const GoBack = async () => {
+    router.push("/");
+  };
+
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+      <button
+        className="absolute left-2 top-2 z-10 bg-slate-700 text-white rounded-md p-2 px-5 max-w-60 min-w-20 flex items-center gap-2 hover:bg-slate-900 transition-colors duration-200 ease-in-out"
+        onClick={GoBack}
+      >
+        <ArrowLeft size={16}></ArrowLeft>Go back
+      </button>
       <div className="w-full max-w-md">
         <div className="bg-slate-800 rounded-2xl shadow-2xl p-8 border border-slate-700">
           <div className="mb-8">
@@ -87,7 +100,7 @@ export default function SignInPage() {
               type="submit"
               className=" mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 active:scale-[0.98]"
             >
-              Sign in
+              {loader ? "Loading..." : "Sign In"}
             </button>
           </form>
         </div>

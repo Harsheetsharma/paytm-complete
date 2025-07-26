@@ -43,6 +43,8 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./lib/auth";
 
 //custom Botton compoent
 
