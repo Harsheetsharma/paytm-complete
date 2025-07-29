@@ -7,7 +7,9 @@ COPY package.json package-lock.json tsconfig.json turbo.json ./
 COPY apps ./apps
 COPY packages ./packages
 
-RUN npm install 
+RUN npm install
+
+COPY .env .env
 
 RUN npm run db:generate
 

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ButtontoTransactionsPage } from "../../../components/ButtonToTransactions";
+import { ButtonToTransferPage } from "../../../components/ButtonToTransfer";
 import {
   Bell,
   Search,
@@ -43,9 +45,12 @@ import {
   AlertCircle,
   Clock,
   ArrowRight,
+  LoaderCircle,
+  Loader,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import UsersName from "../../../components/UsersName";
+import { on } from "events";
 
 // Button Component
 const Button = ({
@@ -93,6 +98,7 @@ const Button = ({
 // Card Component
 const Card = ({
   children,
+  onClick,
   className = "",
   ...props
 }: {
@@ -101,6 +107,7 @@ const Card = ({
   [key: string]: any;
 }) => (
   <div
+    onClick={onClick}
     className={`bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200 ${className}`}
     {...props}
   >
@@ -182,6 +189,7 @@ const Badge = ({
 export default function PaytmDashboard() {
   const [balanceVisible, setBalanceVisible] = useState(true);
   const [selectedPeriod, setSelectedPeriod] = useState("7d");
+  const router = useRouter();
 
   const quickActions = [
     {
@@ -189,6 +197,9 @@ export default function PaytmDashboard() {
       label: "Send Money",
       color: "bg-blue-500",
       hoverColor: "hover:bg-blue-600",
+      onclick: () => {
+        router.push("/p2p");
+      },
     },
     {
       icon: <QrCode className="h-5 w-5" />,
@@ -213,6 +224,9 @@ export default function PaytmDashboard() {
       label: "Add Money",
       color: "bg-indigo-500",
       hoverColor: "hover:bg-indigo-600",
+      onclick: () => {
+        router.push("/transfer");
+      },
     },
     {
       icon: <Gift className="h-5 w-5" />,
@@ -363,11 +377,8 @@ export default function PaytmDashboard() {
     }
   };
 
-  // function to go to homepage
-  const router = useRouter();
-  const homepage = async () => {
-    router.push("/");
-  };
+  // another functions to go to transfer page
+
   //
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -391,7 +402,9 @@ export default function PaytmDashboard() {
             {/* Logo */}
             <div
               className="flex items-center space-x-3 hover:cursor-pointer"
-              onClick={homepage}
+              onClick={() => {
+                router.push("/");
+              }}
             >
               <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
                 <Wallet className="h-6 w-6 text-white" />
@@ -453,7 +466,7 @@ export default function PaytmDashboard() {
 
         {/* Balance Card */}
         <Card className="mb-8 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white border-0">
-          <CardContent className="p-8">
+          <CardContent className="p-8 pt-4">
             <div className="flex justify-between items-start mb-6">
               <div>
                 <p className="text-blue-100 mb-2">Total Balance</p>
@@ -496,8 +509,9 @@ export default function PaytmDashboard() {
                 variant="outline"
                 className="border-blue-400 text-blue-100 hover:bg-blue-600 hover:border-blue-300"
               >
-                <Plus className="h-4 w-4 mr-2" />
-                Add Money
+                <span className="flex text-center items-center">
+                  <ButtonToTransferPage></ButtonToTransferPage>
+                </span>
               </Button>
             </div>
           </CardContent>
@@ -512,6 +526,7 @@ export default function PaytmDashboard() {
             {quickActions.map((action, index) => (
               <Card
                 key={index}
+                onClick={action.onclick}
                 className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:-translate-y-1 pt-4"
               >
                 <CardContent className="p-6 text-center">
@@ -619,7 +634,9 @@ export default function PaytmDashboard() {
                 <div className="mt-6 text-center">
                   <Button variant="outline" className="w-full">
                     <History className="h-4 w-4 mr-2" />
-                    View All Transactions
+                    <span>
+                      <ButtontoTransactionsPage></ButtontoTransactionsPage>
+                    </span>
                   </Button>
                 </div>
               </CardContent>
@@ -662,7 +679,7 @@ export default function PaytmDashboard() {
 
             {/* Offers */}
             <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
-              <CardContent className="p-6">
+              <CardContent className="p-6 pt-4">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
                     <Gift className="h-5 w-5 text-white" />
