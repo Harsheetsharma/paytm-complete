@@ -4,10 +4,14 @@ import { Card } from "@repo/ui/card";
 import { TextInput } from "@repo/ui/textinput";
 import { use, useState } from "react";
 import { P2Ptransfer } from "../app/lib/actions/p2ptransfer";
+import { ok } from "assert";
+import { toast } from "react-toastify";
+import "../components/styles/toast.css";
 
 export default function () {
   const [number, setNumber] = useState("");
   const [amount, setAmount] = useState(0);
+  const [loader, setLoader] = useState(false);
   return (
     <Card title="Send">
       <div className="">
@@ -28,11 +32,31 @@ export default function () {
         <div className="flex justify-center pt-4">
           <Button
             onClick={async () => {
-              await P2Ptransfer(number, amount * 100);
-              window.location.href = "/transfer";
+              setLoader(true);
+              try {
+                const response = await P2Ptransfer(number, amount * 100);
+                if (response) {
+                  toast.success("Transfer successful!", {
+                    className: "toast-success",
+                  });
+                  setTimeout(() => {
+                    window.location.href = "/transfer";
+                  }, 1000);
+                } else {
+                  toast.error("Insufficient Funds!", {
+                    className: "toast-error",
+                  });
+                }
+              } catch (error) {
+                console.error("Insufficient Funds!");
+                toast.error("Insufficient Funds!", {
+                  className: "toast-error",
+                });
+              }
+              setLoader(false);
             }}
           >
-            Send
+            {loader ? "Processing..." : "Send"}
           </Button>
         </div>
       </div>

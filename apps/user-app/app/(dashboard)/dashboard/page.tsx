@@ -53,7 +53,7 @@ import UsersName from "../../../components/UsersName";
 import { on } from "events";
 
 // Button Component
-const Button = ({
+export const Button = ({
   children,
   variant = "default",
   size = "default",
@@ -96,7 +96,7 @@ const Button = ({
 };
 
 // Card Component
-const Card = ({
+export const Card = ({
   children,
   onClick,
   className = "",
@@ -115,7 +115,7 @@ const Card = ({
   </div>
 );
 
-const CardHeader = ({
+export const CardHeader = ({
   children,
   className = "",
   ...props
@@ -129,7 +129,7 @@ const CardHeader = ({
   </div>
 );
 
-const CardContent = ({
+export const CardContent = ({
   children,
   className = "",
   ...props
@@ -641,6 +641,7 @@ export default function PaytmDashboard() {
                 </div>
               </CardContent>
             </Card>
+            {/* inside this div here lies a component to show recent trasactions */}
           </div>
 
           {/* Sidebar */}

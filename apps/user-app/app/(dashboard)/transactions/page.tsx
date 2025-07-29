@@ -37,7 +37,7 @@ async function getRecentp2pTxn() {
 export default async function () {
   const recentTransaction = await getRecentp2pTxn();
   return (
-    <div className="mt-5 w-1/3 ml-5">
+    <div className="mt-10 w-1/3 mx-auto">
       <Recentp2pTxn transactions={recentTransaction}></Recentp2pTxn>
     </div>
   );

@@ -1,4 +1,21 @@
+"use client";
 import { Card } from "@repo/ui/card";
+import { Button } from "../app/(dashboard)/dashboard/page";
+import { Card as Cards } from "../app/(dashboard)/dashboard/page";
+import { CardHeader } from "../app/(dashboard)/dashboard/page";
+import { CardContent } from "../app/(dashboard)/dashboard/page";
+import {
+  History,
+  Filter,
+  Download,
+  ArrowUpRight,
+  ArrowDownLeft,
+  Zap,
+  Smartphone,
+  Clock,
+  ArrowRight,
+} from "lucide-react";
+import { ButtontoTransactionsPage } from "./ButtonToTransactions";
 
 export const Recentp2pTxn = ({
   transactions,
@@ -18,31 +35,135 @@ export const Recentp2pTxn = ({
       </Card>
     );
   }
+
+  const Badge = ({
+    children,
+    variant = "default",
+    className = "",
+    ...props
+  }: {
+    children: React.ReactNode;
+    variant?: "default" | "success" | "warning" | "error";
+    className?: string;
+    [key: string]: any;
+  }) => {
+    const variants = {
+      default: "bg-slate-100 text-slate-800",
+      success: "bg-green-100 text-green-800",
+      warning: "bg-yellow-100 text-yellow-800",
+      error: "bg-red-100 text-red-800",
+    };
+
+    return (
+      <span
+        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${variants[variant]} ${className}`}
+        {...props}
+      >
+        {children}
+      </span>
+    );
+  };
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "completed":
+        return <Badge variant="success">Completed</Badge>;
+      case "pending":
+        return <Badge variant="warning">Pending</Badge>;
+      case "failed":
+        return <Badge variant="error">Failed</Badge>;
+      default:
+        return <Badge>Unknown</Badge>;
+    }
+  };
+
   return (
-    <Card title="Your Recent Transactions">
-      <div className="pt-2">
-        {transactions.map((t) => (
-          <div className="flex justify-between border-b mb-1">
-            <div>
-              <div className="text-sm">
-                {t.direction === "sent"
-                  ? `INR ${t.amount / 100} Sent to ${t.counterParty}`
-                  : `INR ${t.amount / 100} Received from ${t.counterParty}`}
+    <div>
+      {/* <Card title="Your Recent Transactions">
+        <div className="pt-2">
+          {transactions.map((t) => (
+            <div className="flex justify-between border-b mb-1">
+              <div>
+                <div className="text-sm">
+                  {t.direction === "sent"
+                    ? `INR ${t.amount / 100} Sent to ${t.counterParty}`
+                    : `INR ${t.amount / 100} Received from ${t.counterParty}`}
+                </div>
+                <div className="text-slate-600 text-xs">
+                  {t.timeStamp.toDateString()}
+                </div>
               </div>
-              <div className="text-slate-600 text-xs">
-                {t.timeStamp.toDateString()}
+              <div
+                className={`flex flex-col justify-center font-semibold ${
+                  t.direction === "sent" ? "text-red-600" : "text-green-600"
+                }`}
+              >
+                {t.direction === "sent" ? "-" : "+"} Rs {t.amount / 100}
               </div>
             </div>
-            <div
-              className={`flex flex-col justify-center font-semibold ${
-                t.direction === "sent" ? "text-red-600" : "text-green-600"
-              }`}
-            >
-              {t.direction === "sent" ? "-" : "+"} Rs {t.amount / 100}
+          ))}
+        </div>
+      </Card> */}
+
+      <Cards>
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <h3 className="text-lg font-semibold text-slate-900">
+              Recent Transactions
+            </h3>
+            <div className="flex items-center space-x-2">
+              <Button variant="ghost" size="sm">
+                <Filter className="h-4 w-4 mr-2" />
+                Filter
+              </Button>
+              <Button variant="ghost" size="sm">
+                <Download className="h-4 w-4 mr-2" />
+                Export
+              </Button>
             </div>
           </div>
-        ))}
-      </div>
-    </Card>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {transactions.map((transaction, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between p-4 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer border-b"
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 bg-slate-400 rounded-full flex items-center justify-center">
+                    {/* {getTransactionIcon(transaction.type)} */}
+                  </div>
+                  <div>
+                    <p className="font-medium text-slate-900">
+                      {transaction.counterParty}
+                    </p>
+                    <p className="text-sm text-slate-500">
+                      {transaction.direction === "sent"
+                        ? `Sent to ${transaction.counterParty}`
+                        : `Received from ${transaction.counterParty}`}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p
+                    className={`font-semibold ${transaction.direction === "sent" ? "text-red-500" : "text-green-800"}`}
+                  >
+                    {transaction.direction === "sent" ? "-" : "+"}
+                    {transaction.amount / 100}
+                  </p>
+                  <div className="flex items-center space-x-2">
+                    <p className="text-xs text-slate-500">
+                      {transaction.timeStamp.toDateString()}
+                    </p>
+                    {getStatusBadge("completed")}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Cards>
+    </div>
   );
 };

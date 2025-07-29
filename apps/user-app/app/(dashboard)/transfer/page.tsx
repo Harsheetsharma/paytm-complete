@@ -8,7 +8,7 @@ import { authOptions } from "../../lib/auth";
 import { timeStamp } from "console";
 import { useId } from "react";
 
-async function getBalance() {
+export async function getBalance() {
   const session = await getServerSession(authOptions);
   const balance = await prisma.balance.findFirst({
     where: {

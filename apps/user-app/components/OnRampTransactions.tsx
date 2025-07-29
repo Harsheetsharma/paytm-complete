@@ -21,8 +21,8 @@ export const OnRampTransactions = ({
   return (
     <Card title="Recent On-Ramp Transactions">
       <div className="pt-2">
-        {transactions.map((t) => (
-          <div className="flex justify-between border-b mb-1">
+        {transactions.map((t, index) => (
+          <div key={index} className="flex justify-between border-b mb-1">
             <div>
               <div className="text-sm">Received INR</div>
               <div
