@@ -36,7 +36,11 @@ export default function Layout({
           </button>
         </div>
       )}
-      <div className={exceptDashboard ? "pl-20 pt-12" : ""}>{children}</div>
+      <div
+        className={exceptDashboard ? "pt-12 pl-4 pr-4 sm:pl-20 sm:pr-0" : ""}
+      >
+        {children}
+      </div>
     </div>
   );
 }

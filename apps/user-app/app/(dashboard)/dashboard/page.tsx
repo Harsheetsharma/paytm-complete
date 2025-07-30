@@ -466,8 +466,8 @@ export default function PaytmDashboard() {
 
         {/* Balance Card */}
         <Card className="mb-8 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white border-0">
-          <CardContent className="p-8 pt-4">
-            <div className="flex justify-between items-start mb-6">
+          <CardContent className="p-8 pt-4 sm:ml-0">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
               <div>
                 <p className="text-blue-100 mb-2">Total Balance</p>
                 <div className="flex items-center space-x-3">
@@ -494,7 +494,7 @@ export default function PaytmDashboard() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-green-400 rounded-full"></div>
@@ -507,7 +507,7 @@ export default function PaytmDashboard() {
               </div>
               <Button
                 variant="outline"
-                className="border-blue-400 text-blue-100 hover:bg-blue-600 hover:border-blue-300"
+                className="border-blue-400 text-blue-100 hover:bg-blue-600 hover:border-blue-300 w-full sm:w-auto text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2"
               >
                 <span className="flex text-center items-center">
                   <ButtonToTransferPage></ButtonToTransferPage>

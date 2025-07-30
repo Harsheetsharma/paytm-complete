@@ -1,5 +1,5 @@
 "use client";
-import { Card } from "@repo/ui/card";
+// import { Card } from "@repo/ui/card";
 import { Button } from "../app/(dashboard)/dashboard/page";
 import { Card as Cards } from "../app/(dashboard)/dashboard/page";
 import { CardHeader } from "../app/(dashboard)/dashboard/page";
@@ -30,9 +30,9 @@ export const Recentp2pTxn = ({
 }) => {
   if (!transactions.length) {
     return (
-      <Card title="Your Recent Transactions">
+      <Cards title="Your Recent Transactions">
         <div className="text-center pb-8 pt-8">No Recent transactions</div>
-      </Card>
+      </Cards>
     );
   }
 
@@ -78,66 +78,64 @@ export const Recentp2pTxn = ({
   };
 
   return (
-    <div>
-      <Cards>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <h3 className="text-lg font-semibold text-slate-900">
-              Recent Transactions
-            </h3>
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm">
-                <Filter className="h-4 w-4 mr-2" />
-                Filter
-              </Button>
-              <Button variant="ghost" size="sm">
-                <Download className="h-4 w-4 mr-2" />
-                Export
-              </Button>
-            </div>
+    <Cards className="w-full">
+      <CardHeader>
+        <div className="flex justify-between items-center flex-col sm:flex-row sm:items-center gap-4 mb-6">
+          <h3 className="text-lg font-semibold text-slate-900">
+            Recent Transactions
+          </h3>
+          <div className="flex items-center space-x-2">
+            <Button variant="ghost" size="sm">
+              <Filter className="h-4 w-4 mr-2" />
+              Filter
+            </Button>
+            <Button variant="ghost" size="sm">
+              <Download className="h-4 w-4 mr-2" />
+              Export
+            </Button>
           </div>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {transactions.map((transaction, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between p-4 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer border-b"
-              >
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-slate-400 rounded-full flex items-center justify-center">
-                    {/* {getTransactionIcon(transaction.type)} */}
-                  </div>
-                  <div>
-                    <p className="font-medium text-slate-900">
-                      {transaction.counterParty}
-                    </p>
-                    <p className="text-sm text-slate-500">
-                      {transaction.direction === "sent"
-                        ? `Sent to ${transaction.counterParty}`
-                        : `Received from ${transaction.counterParty}`}
-                    </p>
-                  </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          {transactions.map((transaction, index) => (
+            <div
+              key={index}
+              className="flex flex-row sm:items-center sm:justify-between gap-4 p-4 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer border-b"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 bg-slate-400 rounded-full flex items-center justify-center">
+                  {/* {getTransactionIcon(transaction.type)} */}
                 </div>
-                <div className="text-right">
-                  <p
-                    className={`font-semibold ${transaction.direction === "sent" ? "text-red-500" : "text-green-800"}`}
-                  >
-                    {transaction.direction === "sent" ? "-" : "+"}
-                    {transaction.amount / 100}
+                <div>
+                  <p className="font-medium text-slate-900">
+                    {transaction.counterParty}
                   </p>
-                  <div className="flex items-center space-x-2">
-                    <p className="text-xs text-slate-500">
-                      {transaction.timeStamp.toDateString()}
-                    </p>
-                    {getStatusBadge("completed")}
-                  </div>
+                  <p className="text-sm text-slate-500">
+                    {transaction.direction === "sent"
+                      ? `Sent to ${transaction.counterParty}`
+                      : `Received from ${transaction.counterParty}`}
+                  </p>
                 </div>
               </div>
-            ))}
-          </div>
-        </CardContent>
-      </Cards>
-    </div>
+              <div className="text-right sm:text-right ">
+                <p
+                  className={`font-semibold ${transaction.direction === "sent" ? "text-red-500" : "text-green-800"} mb-2`}
+                >
+                  {transaction.direction === "sent" ? "-" : "+"}
+                  {transaction.amount / 100}
+                </p>
+                <div className="flex items-end sm:items-end space-x-2">
+                  <p className="text-xs text-slate-500">
+                    {transaction.timeStamp.toDateString()}
+                  </p>
+                  {getStatusBadge("completed")}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Cards>
   );
 };
