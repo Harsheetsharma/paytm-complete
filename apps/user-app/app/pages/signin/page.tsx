@@ -23,9 +23,10 @@ export default function SignInPage() {
       redirect: false,
       phone: number,
       password: password,
+      callbackUrl: "/setName",
     });
-    if (result?.ok) {
-      router.push("/dashboard");
+    if (result?.ok && result.url) {
+      router.push(result.url);
     }
 
     console.log("Sign in attempt:", { number, password, rememberMe });
