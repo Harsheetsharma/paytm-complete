@@ -120,7 +120,7 @@ export default function SignInPage() {
               disabled={loader}
               className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loader ? "Loading..." : "Sign In"}
+              {loader ? "Signing In..." : "Sign In"}
             </button>
           </form>
         </div>
