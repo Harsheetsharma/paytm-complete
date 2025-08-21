@@ -55,6 +55,7 @@ export default function () {
               }
               setLoader(false);
             }}
+            loader={loader}
           >
             {loader ? "Processing..." : "Send"}
           </Button>

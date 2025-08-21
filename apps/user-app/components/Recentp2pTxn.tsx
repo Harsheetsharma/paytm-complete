@@ -1,9 +1,9 @@
 "use client";
 // import { Card } from "@repo/ui/card";
-import { Button } from "../app/(dashboard)/dashboard/page";
-import { Card as Cards } from "../app/(dashboard)/dashboard/page";
-import { CardHeader } from "../app/(dashboard)/dashboard/page";
-import { CardContent } from "../app/(dashboard)/dashboard/page";
+import { Button } from "./minicomponents/Button";
+import { Card } from "./minicomponents/Card";
+import { CardHeader } from "./minicomponents/CardHeader";
+import { CardContent } from "./minicomponents/CardContent";
 import {
   History,
   Filter,
@@ -30,9 +30,9 @@ export const Recentp2pTxn = ({
 }) => {
   if (!transactions.length) {
     return (
-      <Cards title="Your Recent Transactions">
+      <Card title="Your Recent Transactions">
         <div className="text-center pb-8 pt-8">No Recent transactions</div>
-      </Cards>
+      </Card>
     );
   }
 
@@ -78,7 +78,7 @@ export const Recentp2pTxn = ({
   };
 
   return (
-    <Cards className="w-full">
+    <Card className="w-full">
       <CardHeader>
         <div className="flex justify-between items-center flex-col sm:flex-row sm:items-center gap-4 mb-6">
           <h3 className="text-lg font-semibold text-slate-900">
@@ -136,6 +136,6 @@ export const Recentp2pTxn = ({
           ))}
         </div>
       </CardContent>
-    </Cards>
+    </Card>
   );
 };

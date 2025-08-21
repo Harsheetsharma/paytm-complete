@@ -1,8 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Button } from "../../../components/minicomponents/Button";
+import { Card } from "../../../components/minicomponents/Card";
+import { CardContent } from "../../../components/minicomponents/CardContent";
+import { CardHeader } from "../../../components/minicomponents/CardHeader";
+import { Input } from "../../../components/minicomponents/Input";
+import { Badge } from "../../../components/minicomponents/Badge";
 import { ButtontoTransactionsPage } from "../../../components/ButtonToTransactions";
 import { ButtonToTransferPage } from "../../../components/ButtonToTransfer";
+import GetUsersName from "../../../components/GetUsersName";
 import {
   Bell,
   Search,
@@ -49,142 +56,8 @@ import {
   Loader,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import UsersName from "../../../components/UsersName";
 import { on } from "events";
-
-// Button Component
-export const Button = ({
-  children,
-  variant = "default",
-  size = "default",
-  className = "",
-  ...props
-}: {
-  children: React.ReactNode;
-  variant?: "default" | "outline" | "ghost" | "secondary";
-  size?: "default" | "sm" | "lg" | "icon";
-  className?: string;
-  [key: string]: any;
-}) => {
-  const baseClasses =
-    "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
-
-  const variants = {
-    default:
-      "bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl",
-    outline:
-      "border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 hover:border-blue-500",
-    ghost: "hover:bg-slate-100 text-slate-700 hover:text-slate-900",
-    secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200",
-  };
-
-  const sizes = {
-    default: "h-10 px-4 py-2",
-    sm: "h-8 px-3 text-sm",
-    lg: "h-12 px-6 text-lg",
-    icon: "h-10 w-10",
-  };
-
-  return (
-    <button
-      className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
-
-// Card Component
-export const Card = ({
-  children,
-  onClick,
-  className = "",
-  ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  [key: string]: any;
-}) => (
-  <div
-    onClick={onClick}
-    className={`bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200 ${className}`}
-    {...props}
-  >
-    {children}
-  </div>
-);
-
-export const CardHeader = ({
-  children,
-  className = "",
-  ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  [key: string]: any;
-}) => (
-  <div className={`p-6 pb-4 ${className}`} {...props}>
-    {children}
-  </div>
-);
-
-export const CardContent = ({
-  children,
-  className = "",
-  ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  [key: string]: any;
-}) => (
-  <div className={`p-6 pt-0 ${className}`} {...props}>
-    {children}
-  </div>
-);
-
-// Input Component
-const Input = ({
-  className = "",
-  ...props
-}: {
-  className?: string;
-  [key: string]: any;
-}) => (
-  <input
-    className={`flex h-10 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
-    {...props}
-  />
-);
-
-// Badge Component
-const Badge = ({
-  children,
-  variant = "default",
-  className = "",
-  ...props
-}: {
-  children: React.ReactNode;
-  variant?: "default" | "success" | "warning" | "error";
-  className?: string;
-  [key: string]: any;
-}) => {
-  const variants = {
-    default: "bg-slate-100 text-slate-800",
-    success: "bg-green-100 text-green-800",
-    warning: "bg-yellow-100 text-yellow-800",
-    error: "bg-red-100 text-red-800",
-  };
-
-  return (
-    <span
-      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${variants[variant]} ${className}`}
-      {...props}
-    >
-      {children}
-    </span>
-  );
-};
+import GetUsersNumber from "../../../components/GetUsersNumber";
 
 export default function PaytmDashboard() {
   const [balanceVisible, setBalanceVisible] = useState(true);
@@ -439,7 +312,7 @@ export default function PaytmDashboard() {
                 </div>
                 <div className="hidden md:block">
                   <p className="text-sm font-medium text-slate-900">
-                    {/* <UsersName></UsersName> */}
+                    <GetUsersNumber></GetUsersNumber>
                   </p>
                   <p className="text-xs text-slate-500">Premium Member</p>
                 </div>
@@ -457,7 +330,7 @@ export default function PaytmDashboard() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-slate-900 mb-2">
-            Good morning, Rajesh! 👋
+            Good morning, <GetUsersName />! 👋
           </h2>
           <p className="text-slate-600">
             Here's what's happening with your account today.
@@ -472,7 +345,7 @@ export default function PaytmDashboard() {
                 <p className="text-blue-100 mb-2">Total Balance</p>
                 <div className="flex items-center space-x-3">
                   <h3 className="text-4xl font-bold">
-                    {balanceVisible ? "₹24,580.50" : "₹••••••••"}
+                    {balanceVisible ? "₹2,345,434" : "₹••••••••"}
                   </h3>
                   <Button
                     variant="ghost"
@@ -490,7 +363,7 @@ export default function PaytmDashboard() {
               </div>
               <div className="text-right">
                 <p className="text-blue-100 text-sm mb-1">Paytm Wallet</p>
-                <p className="text-2xl font-semibold">₹8,450</p>
+                <p className="text-2xl font-semibold">₹3993</p>
               </div>
             </div>
 

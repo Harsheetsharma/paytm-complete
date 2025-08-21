@@ -1,4 +1,4 @@
-import UsersName from "../../../components/UsersName";
+import UsersName from "../../../components/GetUsersName";
 
 export default function () {
   return (

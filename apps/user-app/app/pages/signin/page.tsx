@@ -10,6 +10,7 @@ import { ArrowLeft } from "lucide-react";
 export default function SignInPage() {
   const [number, setNumber] = useState(0);
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function SignInPage() {
       redirect: false,
       phone: number,
       password: password,
+      name: name,
       callbackUrl: "/setName",
     });
     if (result?.ok && result.url) {
@@ -55,6 +57,23 @@ export default function SignInPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
+                htmlFor="name"
+                className="block text-sm font-medium text-slate-300 mb-2"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Johnny"
+                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-500"
+                required
+              />
+            </div>
+            <div>
+              <label
                 htmlFor="email"
                 className="block text-sm font-medium text-slate-300 mb-2"
               >
@@ -63,9 +82,8 @@ export default function SignInPage() {
               <input
                 type="text"
                 id="email"
-                value={number}
                 onChange={(e) => setNumber(Number(e.target.value))}
-                placeholder="name@company.com"
+                placeholder="Your Number"
                 className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-500"
                 required
               />
@@ -99,7 +117,8 @@ export default function SignInPage() {
             </div>
             <button
               type="submit"
-              className=" mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 active:scale-[0.98]"
+              disabled={loader}
+              className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loader ? "Loading..." : "Sign In"}
             </button>
