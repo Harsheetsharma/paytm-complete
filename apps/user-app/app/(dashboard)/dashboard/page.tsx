@@ -10,6 +10,7 @@ import { Badge } from "../../../components/minicomponents/Badge";
 import { ButtontoTransactionsPage } from "../../../components/ButtonToTransactions";
 import { ButtonToTransferPage } from "../../../components/ButtonToTransfer";
 import GetUsersName from "../../../components/GetUsersName";
+import InfoButton from "../../../components/minicomponents/ModalButton";
 import {
   Bell,
   Search,
@@ -54,10 +55,12 @@ import {
   ArrowRight,
   LoaderCircle,
   Loader,
+  BadgeInfo,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { on } from "events";
 import GetUsersNumber from "../../../components/GetUsersNumber";
+import Helper from "../../../components/minicomponents/DashboardHelp";
 
 export default function PaytmDashboard() {
   const [balanceVisible, setBalanceVisible] = useState(true);
@@ -321,11 +324,22 @@ export default function PaytmDashboard() {
               <Button variant="ghost" size="icon">
                 <Settings className="h-5 w-5" />
               </Button>
+              {/* Notes icon (shown only on mobile) */}
+              {/* <button className="text-gray-600 text-xl hover:text-gray-800 block lg:hidden">
+                <BadgeInfo></BadgeInfo>
+              </button> */}
+
+              {/* Notes full button (shown on desktop) */}
+              {/* <button className="hidden lg:block px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                Notes!
+              </button> */}
+              <span className="xl:hidden">
+                <InfoButton></InfoButton>
+              </span>
             </div>
           </div>
         </div>
       </header>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Section */}
         <div className="mb-8">
