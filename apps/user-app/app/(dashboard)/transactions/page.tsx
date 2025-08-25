@@ -22,7 +22,7 @@ async function getRecentp2pTxn() {
     },
   });
   return recentTxn.map(
-    (t): Transaction => ({
+    (t: any): Transaction => ({
       amount: t.amount,
       timeStamp: t.timestampt,
       direction: t.fromUserId === userId ? "sent" : "received",
