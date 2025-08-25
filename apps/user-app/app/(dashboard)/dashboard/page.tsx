@@ -60,7 +60,6 @@ import {
 import { useRouter } from "next/navigation";
 import { on } from "events";
 import GetUsersNumber from "../../../components/GetUsersNumber";
-import Helper from "../../../components/minicomponents/DashboardHelp";
 
 export default function PaytmDashboard() {
   const [balanceVisible, setBalanceVisible] = useState(true);
