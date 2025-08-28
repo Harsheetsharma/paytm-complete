@@ -25,7 +25,6 @@ export default function SignInPage() {
       phone: number,
       password: password,
       name: name,
-      callbackUrl: "/setName",
     });
     if (result?.ok && result.url) {
       router.push(result.url);
