@@ -2,7 +2,7 @@
   "name": "week-18",
   "private": true,
   "scripts": {
-    "build": "npm run db:generate && turbo build",
+    "build": "npm run db:generate && turbo build --filter=./apps/user-app",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "db:generate": "cd packages/db && npx prisma generate && cd ../..",
