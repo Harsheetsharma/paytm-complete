@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 export default function CancelPage() {
   return (
     <div className="p-10 text-center">

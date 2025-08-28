@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: "Simple wallet app",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: {
@@ -33,8 +35,8 @@ export default function RootLayout({
               hideProgressBar={false}
             />
           </div>
+          <GlobalLoadingOverLay />
         </Providers>
-        <GlobalLoadingOverLay />
       </body>
     </html>
   );

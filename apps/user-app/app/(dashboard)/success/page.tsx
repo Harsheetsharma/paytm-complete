@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 export default function SuccessPage() {
   return (
     <div className="p-10 text-center">

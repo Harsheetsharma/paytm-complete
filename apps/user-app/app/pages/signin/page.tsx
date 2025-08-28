@@ -6,6 +6,8 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { error } from "console";
 import { ArrowLeft } from "lucide-react";
+import { useSetRecoilState } from "recoil";
+import { globalLoading } from "@repo/store";
 
 export default function SignInPage() {
   const [number, setNumber] = useState(0);
@@ -15,21 +17,30 @@ export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const [loader, setLoader] = useState(false);
+  const setGlobalLoading = useSetRecoilState(globalLoading);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle sign in logic here
     setLoader(true);
-    const result = await signIn("credentials", {
-      redirect: true,
-      callbackUrl: "/dashboard",
-      phone: number,
-      password,
-      name,
-    });
-    if (result?.ok) {
-      router.push("/dashboard");
+    try {
+      setGlobalLoading(true);
+      const result = await signIn("credentials", {
+        redirect: true,
+        callbackUrl: "/dashboard",
+        phone: number,
+        password,
+        name,
+      });
+      // With redirect: true NextAuth will navigate; if it returns without redirect, fallback:
+      if (result?.ok) {
+        router.push("/dashboard");
+      }
+    } catch (err) {
+      // no-op
+    } finally {
       setLoader(false);
+      setGlobalLoading(false);
     }
 
     console.log("Sign in attempt:", { number, password, rememberMe });

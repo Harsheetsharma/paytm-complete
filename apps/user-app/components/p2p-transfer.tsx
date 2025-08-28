@@ -4,7 +4,7 @@ import { Card } from "@repo/ui/card";
 import { TextInput } from "@repo/ui/textinput";
 import { use, useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { globalLoadingAtom } from "@repo/store";
+import { globalLoading } from "@repo/store";
 import { P2Ptransfer } from "../app/lib/actions/p2ptransfer";
 import { ok } from "assert";
 import { toast } from "react-toastify";
@@ -14,7 +14,7 @@ export default function () {
   const [number, setNumber] = useState("");
   const [amount, setAmount] = useState(0);
   const [loader, setLoader] = useState(false);
-  const setGlobalLoading = useSetRecoilState(globalLoadingAtom);
+  const setGlobalLoading = useSetRecoilState(globalLoading);
   return (
     <Card title="Send">
       <div className="">
