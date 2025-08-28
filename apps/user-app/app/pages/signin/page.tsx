@@ -21,13 +21,15 @@ export default function SignInPage() {
     // Handle sign in logic here
     setLoader(true);
     const result = await signIn("credentials", {
-      redirect: false,
+      redirect: true,
+      callbackUrl: "/dashboard",
       phone: number,
-      password: password,
-      name: name,
+      password,
+      name,
     });
-    if (result?.ok && result.url) {
-      router.push(result.url);
+    if (result?.ok) {
+      router.push("/dashboard");
+      setLoader(false);
     }
 
     console.log("Sign in attempt:", { number, password, rememberMe });
