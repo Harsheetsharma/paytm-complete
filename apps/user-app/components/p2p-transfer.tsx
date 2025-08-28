@@ -3,6 +3,8 @@ import { Button } from "@repo/ui/button";
 import { Card } from "@repo/ui/card";
 import { TextInput } from "@repo/ui/textinput";
 import { use, useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { globalLoadingAtom } from "@repo/store";
 import { P2Ptransfer } from "../app/lib/actions/p2ptransfer";
 import { ok } from "assert";
 import { toast } from "react-toastify";
@@ -12,6 +14,7 @@ export default function () {
   const [number, setNumber] = useState("");
   const [amount, setAmount] = useState(0);
   const [loader, setLoader] = useState(false);
+  const setGlobalLoading = useSetRecoilState(globalLoadingAtom);
   return (
     <Card title="Send">
       <div className="">
@@ -34,6 +37,7 @@ export default function () {
             onClick={async () => {
               setLoader(true);
               try {
+                setGlobalLoading(true);
                 const response = await P2Ptransfer(number, amount * 100);
                 if (response) {
                   toast.success("Transfer successful!", {
@@ -54,6 +58,7 @@ export default function () {
                 });
               }
               setLoader(false);
+              setGlobalLoading(false);
             }}
             loader={loader}
           >

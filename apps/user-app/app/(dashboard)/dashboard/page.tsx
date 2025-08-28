@@ -59,12 +59,15 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { on } from "events";
+import { useSetRecoilState } from "recoil";
+import { globalLoading } from "@repo/store";
 import GetUsersNumber from "../../../components/GetUsersNumber";
 
 export default function PaytmDashboard() {
   const [balanceVisible, setBalanceVisible] = useState(true);
   const [selectedPeriod, setSelectedPeriod] = useState("7d");
   const router = useRouter();
+  const setGlobalLoading = useSetRecoilState(globalLoading);
 
   const quickActions = [
     {
@@ -72,8 +75,13 @@ export default function PaytmDashboard() {
       label: "Send Money",
       color: "bg-blue-500",
       hoverColor: "hover:bg-blue-600",
-      onclick: () => {
-        router.push("/p2p");
+      onclick: async () => {
+        try {
+          setGlobalLoading(true);
+          router.push("/p2p");
+        } finally {
+          setTimeout(() => setGlobalLoading(false), 600);
+        }
       },
     },
     {
@@ -99,8 +107,13 @@ export default function PaytmDashboard() {
       label: "Add Money",
       color: "bg-indigo-500",
       hoverColor: "hover:bg-indigo-600",
-      onclick: () => {
-        router.push("/transfer");
+      onclick: async () => {
+        try {
+          setGlobalLoading(true);
+          router.push("/transfer");
+        } finally {
+          setTimeout(() => setGlobalLoading(false), 600);
+        }
       },
     },
     {

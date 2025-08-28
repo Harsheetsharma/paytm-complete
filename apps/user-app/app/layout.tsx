@@ -5,6 +5,7 @@ import { Providers } from "../provider";
 import { AppbarClient } from "../components/AppbarClient";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { GlobalLoadingOverLay } from "../components/GlobalLoadingOverLay";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
             />
           </div>
         </Providers>
+        <GlobalLoadingOverLay />
       </body>
     </html>
   );
