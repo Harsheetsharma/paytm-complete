@@ -20,8 +20,8 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <Providers>
-        <body className={inter.className}>
+      <body className={inter.className}>
+        <Providers>
           <div className="min-w-screen min-h-screen bg-[#ebe6e6]">
             {/* <AppbarClient /> */}
             {children}
@@ -32,8 +32,8 @@ export default function RootLayout({
               hideProgressBar={false}
             />
           </div>
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }

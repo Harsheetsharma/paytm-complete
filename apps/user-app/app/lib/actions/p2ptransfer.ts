@@ -7,7 +7,7 @@ import { error } from "console";
 
 export async function P2Ptransfer(number: string, amount: number) {
     const session = await getServerSession(authOptions);
-    const userId = session.user.id;
+    const userId = session?.user?.id;
     if (!userId) {
         return {
             message: "unauthorized user"

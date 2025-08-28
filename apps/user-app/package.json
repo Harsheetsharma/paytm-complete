@@ -17,8 +17,8 @@
     "esbuild": "0.25.5",
     "next": "^15.3.3",
     "next-auth": "^4.24.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-toastify": "^11.0.5",
     "stripe": "^18.3.0"
   },

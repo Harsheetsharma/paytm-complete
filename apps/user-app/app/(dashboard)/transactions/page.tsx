@@ -11,7 +11,7 @@ type Transaction = {
 
 async function getRecentp2pTxn() {
   const session = await getServerSession(authOptions);
-  const userId = Number(session.user.id);
+  const userId = Number(session?.user?.id);
   const recentTxn = await prisma.p2pTransfer.findMany({
     where: {
       OR: [{ fromUserId: userId }, { toUserId: userId }],
