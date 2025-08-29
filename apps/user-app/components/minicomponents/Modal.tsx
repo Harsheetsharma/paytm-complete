@@ -31,7 +31,7 @@ export default function Modal({
       ></div>
 
       {/* Modal box */}
-      <div className="relative bg-white rounded-lg shadow-lg p-6 z-10 w-full max-w-lg">
+      <div className="relative bg-white rounded-lg shadow-lg p-6 z-10 w-full max-w-lg mx-2 lg:mx-0">
         {/* Header */}
         <div className="flex justify-between items-center border-b pb-3">
           <h3 className="text-xl font-semibold">Important Info</h3>
