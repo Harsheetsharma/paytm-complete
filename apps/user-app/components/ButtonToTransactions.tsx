@@ -12,9 +12,7 @@ export function ButtontoTransactionsPage() {
     try {
       setLoading(true);
       setGlobalLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 100));
       router.push("/transactions");
-      setTimeout(() => setGlobalLoading(false), 600);
     } finally {
       setLoading(false);
       setTimeout(() => setGlobalLoading(false), 600);

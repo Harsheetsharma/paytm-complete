@@ -78,8 +78,7 @@ export default function PaytmDashboard() {
       onclick: async () => {
         try {
           setGlobalLoading(true);
-          await new Promise((resolve) => setTimeout(resolve, 100));
-          await router.push("/p2p");
+          router.push("/p2p");
         } finally {
           setTimeout(() => setGlobalLoading(false), 600);
         }
@@ -111,7 +110,6 @@ export default function PaytmDashboard() {
       onclick: async () => {
         try {
           setGlobalLoading(true);
-          await new Promise((resolve) => setTimeout(resolve, 100));
           router.push("/transfer");
         } finally {
           setTimeout(() => setGlobalLoading(false), 600);

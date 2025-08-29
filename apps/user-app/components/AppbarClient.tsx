@@ -15,7 +15,6 @@ export function AppbarClient() {
     try {
       setGlobalLoading(true);
       router.push("/dashboard");
-      setGlobalLoading(false);
     } finally {
       setTimeout(() => setGlobalLoading(false), 600);
     }

@@ -9,11 +9,14 @@ export function ButtonToTransferPage() {
   const [loading, setLoading] = useState(false);
   const setGlobalLoading = useSetRecoilState(globalLoading);
   async function handleButton() {
-    setLoading(true);
-    setGlobalLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    await router.push("/transfer");
-    setTimeout(() => setGlobalLoading(false), 600);
+    try {
+      setLoading(true);
+      setGlobalLoading(true);
+      router.push("/transfer");
+    } finally {
+      setLoading(false);
+      setTimeout(() => setGlobalLoading(false), 600);
+    }
   }
   return (
     <button onClick={handleButton}>
