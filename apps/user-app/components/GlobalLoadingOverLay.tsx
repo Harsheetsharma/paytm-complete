@@ -1,15 +1,16 @@
 "use client";
-
-import { globalLoading } from "@repo/store";
+import React from "react";
+import { globalLoading } from "../../../packages/store/src";
 import { useRecoilValue } from "recoil";
 
 export const GlobalLoadingOverLay = () => {
+  console.log("React versions:", React.version);
   const isLoading = useRecoilValue(globalLoading);
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="w-10 h-10 border-t-transparent border-b-transparent border-r-transparent border-l-transparent border-2 border-white rounded-full animate-spin"></div>
+    <div className="fixed inset-0 bg-black bg-opacity-65 flex items-center justify-center z-50">
+      <div className="w-20 h-20 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 };

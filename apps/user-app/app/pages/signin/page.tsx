@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { error } from "console";
 import { ArrowLeft } from "lucide-react";
 import { useSetRecoilState } from "recoil";
-import { globalLoading } from "@repo/store";
+import { globalLoading } from "../../../../../packages/store/src";
 
 export default function SignInPage() {
   const [number, setNumber] = useState(0);
@@ -25,6 +25,8 @@ export default function SignInPage() {
     setLoader(true);
     try {
       setGlobalLoading(true);
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
       const result = await signIn("credentials", {
         redirect: true,
         callbackUrl: "/dashboard",

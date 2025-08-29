@@ -4,7 +4,7 @@ import { Card } from "@repo/ui/card";
 import { TextInput } from "@repo/ui/textinput";
 import { use, useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { globalLoading } from "@repo/store";
+import { globalLoading } from "../../../packages/store/src";
 import { P2Ptransfer } from "../app/lib/actions/p2ptransfer";
 import { ok } from "assert";
 import { toast } from "react-toastify";
@@ -38,6 +38,7 @@ export default function () {
               setLoader(true);
               try {
                 setGlobalLoading(true);
+                await new Promise((resolve) => setTimeout(resolve, 100));
                 const response = await P2Ptransfer(number, amount * 100);
                 if (response) {
                   toast.success("Transfer successful!", {

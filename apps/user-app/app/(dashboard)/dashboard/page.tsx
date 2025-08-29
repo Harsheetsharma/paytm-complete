@@ -60,7 +60,7 @@ import {
 import { useRouter } from "next/navigation";
 import { on } from "events";
 import { useSetRecoilState } from "recoil";
-import { globalLoading } from "@repo/store";
+import { globalLoading } from "../../../../../packages/store/src/";
 import GetUsersNumber from "../../../components/GetUsersNumber";
 
 export default function PaytmDashboard() {
@@ -78,7 +78,8 @@ export default function PaytmDashboard() {
       onclick: async () => {
         try {
           setGlobalLoading(true);
-          router.push("/p2p");
+          await new Promise((resolve) => setTimeout(resolve, 100));
+          await router.push("/p2p");
         } finally {
           setTimeout(() => setGlobalLoading(false), 600);
         }

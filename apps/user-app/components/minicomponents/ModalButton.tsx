@@ -3,7 +3,6 @@ import { useState } from "react";
 import { BadgeInfo } from "lucide-react";
 import Modal from "./Modal"; // import modal component
 import { usePathname } from "next/navigation";
-import path from "path";
 
 export default function InfoButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +46,7 @@ export default function InfoButton() {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           sentence1="1. You can send money someone."
-          sentence2="2. enter the number and press send button!"
+          sentence2="2. Enter the number ,Enter the amount , and press the send button!"
         />
       )}
       {onlyTransactionPage && (
