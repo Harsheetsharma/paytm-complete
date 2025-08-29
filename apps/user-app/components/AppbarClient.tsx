@@ -14,7 +14,8 @@ export function AppbarClient() {
   const goToDashboard = async () => {
     setGlobalLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 100));
-    router.push("/dashboard");
+    await router.push("/dashboard");
+    setGlobalLoading(false);
   };
   return (
     <div className="flex justify-center">
