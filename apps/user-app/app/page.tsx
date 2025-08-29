@@ -317,7 +317,7 @@ export default function PaytmHomepage() {
                   Company
                 </a>
                 <div className="flex flex-col space-y-2 pt-4 border-t">
-                  <Button className="w-full">Sign In</Button>
+                  <AppbarClient></AppbarClient>
                   <Button className="w-full bg-blue-600 hover:bg-blue-700">
                     <Download className="h-4 w-4 mr-2" />
                     Download App
