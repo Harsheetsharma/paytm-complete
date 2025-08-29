@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { error } from "console";
 import { ArrowLeft } from "lucide-react";
 import { useSetRecoilState } from "recoil";
+import { toast } from "react-toastify";
 import { globalLoading } from "../../../../../packages/store/src";
 
 export default function SignInPage() {
@@ -37,6 +38,10 @@ export default function SignInPage() {
       // With redirect: true NextAuth will navigate; if it returns without redirect, fallback:
       if (result?.ok) {
         router.push("/dashboard");
+      } else {
+        toast.error("Sign in failed. Please check your credentials.", {
+          className: "toast-error",
+        });
       }
     } catch (err) {
       // no-op
