@@ -12,10 +12,13 @@ export function AppbarClient() {
 
   const isAuthenticated = session.status === "authenticated";
   const goToDashboard = async () => {
-    setGlobalLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    await router.push("/dashboard");
-    setGlobalLoading(false);
+    try {
+      setGlobalLoading(true);
+      router.push("/dashboard");
+      setGlobalLoading(false);
+    } finally {
+      setTimeout(() => setGlobalLoading(false), 600);
+    }
   };
   return (
     <div className="flex justify-center">

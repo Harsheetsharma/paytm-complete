@@ -9,11 +9,16 @@ export function ButtontoTransactionsPage() {
   const setGlobalLoading = useSetRecoilState(globalLoading);
 
   async function handlebutton() {
-    setLoading(true);
-    setGlobalLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    router.push("/transactions");
-    setTimeout(() => setGlobalLoading(false), 600);
+    try {
+      setLoading(true);
+      setGlobalLoading(true);
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      router.push("/transactions");
+      setTimeout(() => setGlobalLoading(false), 600);
+    } finally {
+      setLoading(false);
+      setTimeout(() => setGlobalLoading(false), 600);
+    }
   }
   return (
     <button onClick={handlebutton}>
