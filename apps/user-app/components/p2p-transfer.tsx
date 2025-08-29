@@ -20,14 +20,14 @@ export default function () {
       <div className="">
         <TextInput
           label="Number"
-          placeholder="7638592753"
+          placeholder="1234567890"
           onChange={(e) => {
             setNumber(e);
           }}
         ></TextInput>
         <TextInput
-          label="Number"
-          placeholder="Amount"
+          label="Amount"
+          placeholder="0"
           onChange={(e) => {
             setAmount(Number(e));
           }}
