@@ -32,7 +32,7 @@ export default function RootLayout({
               position="top-right"
               autoClose={3000}
               theme="light"
-              hideProgressBar={false}
+              hideProgressBar={true}
             />
           </div>
           <GlobalLoadingOverLay />
