@@ -29,7 +29,7 @@ export default function SignInPage() {
       await new Promise((resolve) => setTimeout(resolve, 100));
 
       const result = await signIn("credentials", {
-        redirect: true,
+        redirect: false,
         callbackUrl: "/dashboard",
         phone: number,
         password,
