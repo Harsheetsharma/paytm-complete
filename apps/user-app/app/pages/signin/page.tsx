@@ -19,6 +19,7 @@ export default function SignInPage() {
   const router = useRouter();
   const [loader, setLoader] = useState(false);
   const setGlobalLoading = useSetRecoilState(globalLoading);
+  const [goBackResponsiveNess, setGoBackResponsiveNess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,10 +61,13 @@ export default function SignInPage() {
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
       <button
-        className="absolute left-2 top-2 z-10 bg-slate-700 text-white rounded-md p-2 px-5 max-w-60 min-w-20 flex items-center gap-2 hover:bg-slate-900 transition-colors duration-200 ease-in-out"
+        className="absolute left-2 top-2 z-10 bg-slate-700 text-white rounded-md 
+             p-2 sm:px-3 flex items-center sm:gap-2 hover:bg-slate-900 
+             transition-colors duration-200 ease-in-out"
         onClick={GoBack}
       >
-        <ArrowLeft size={16}></ArrowLeft>Go back
+        <ArrowLeft size={16}></ArrowLeft>
+        <span className="hidden sm:block">Go back</span>
       </button>
       <div className="w-full max-w-md">
         <div className="bg-slate-800 rounded-2xl shadow-2xl p-8 border border-slate-700">

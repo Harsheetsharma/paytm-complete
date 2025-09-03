@@ -1,7 +1,11 @@
+export const dynamic = "force-dynamic"; // disable static optimization
+export const fetchCache = "force-no-store"; // disable fetch caching
+
 import { getServerSession } from "next-auth";
 import prisma from "@repo/db/client";
 import { authOptions } from "../../lib/auth";
 import { Recentp2pTxn } from "../../../components/Recentp2pTxn";
+import { redirect } from "next/navigation";
 type Transaction = {
   amount: number;
   timeStamp: Date;
@@ -11,6 +15,9 @@ type Transaction = {
 
 async function getRecentp2pTxn() {
   const session = await getServerSession(authOptions);
+  if (!session?.user.id) {
+    redirect("/");
+  }
   const userId = Number(session?.user?.id);
   const recentTxn = await prisma.p2pTransfer.findMany({
     where: {
@@ -28,8 +35,8 @@ async function getRecentp2pTxn() {
       direction: t.fromUserId === userId ? "sent" : "received",
       counterParty:
         t.fromUserId === userId
-          ? t.toUser.name ?? "Unknown"
-          : t.fromUser.name ?? "Unknown",
+          ? (t.toUser.name ?? "Unknown")
+          : (t.fromUser.name ?? "Unknown"),
     })
   );
 }

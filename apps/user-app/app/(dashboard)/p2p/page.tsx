@@ -1,11 +1,16 @@
+export const dynamic = "force-dynamic"; // disable static optimization
+export const fetchCache = "force-no-store"; // disable fetch caching
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../lib/auth";
 import P2pTransfer from "../../../components/p2p-transfer";
+import DisplayP2pTransferComponent from "../../../components/DisplayP2pTransferComponent";
+import { redirect } from "next/navigation";
 
-export default function () {
-  return (
-    <div className="flex flex-col h-screen w-full justify-center items-center">
-      <div className="w-80 h-96">
-        <P2pTransfer></P2pTransfer>
-      </div>
-    </div>
-  );
+export default async function page() {
+  const session = await getServerSession(authOptions);
+  if (session?.user.id) {
+    redirect("/");
+  }
+
+  return <DisplayP2pTransferComponent></DisplayP2pTransferComponent>;
 }

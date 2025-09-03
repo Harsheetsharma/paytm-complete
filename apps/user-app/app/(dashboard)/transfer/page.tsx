@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic"; // disable static optimization
+export const fetchCache = "force-no-store"; // disable fetch caching
+
 import prisma from "@repo/db/client";
 import { AddMoney } from "../../../components/AddMoneyCard";
 import { BalanceCard } from "../../../components/BalanceCard";
@@ -7,9 +10,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import { timeStamp } from "console";
 import { useId } from "react";
+import { redirect } from "next/navigation";
 
 async function getBalance() {
   const session = await getServerSession(authOptions);
+  if (!session?.user.id) {
+    redirect("/");
+  }
   const balance = await prisma.balance.findFirst({
     where: {
       userId: Number(session?.user?.id),

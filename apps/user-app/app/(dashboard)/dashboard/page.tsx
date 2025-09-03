@@ -11,6 +11,7 @@ import { ButtontoTransactionsPage } from "../../../components/ButtonToTransactio
 import { ButtonToTransferPage } from "../../../components/ButtonToTransfer";
 import GetUsersName from "../../../components/GetUsersName";
 import InfoButton from "../../../components/minicomponents/ModalButton";
+import { signOut } from "next-auth/react";
 import {
   Bell,
   Search,
@@ -57,17 +58,20 @@ import {
   Loader,
   BadgeInfo,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { on } from "events";
 import { useSetRecoilState } from "recoil";
 import { globalLoading } from "../../../../../packages/store/src/";
 import GetUsersNumber from "../../../components/GetUsersNumber";
+import SettingsDropdown from "../../../components/SettingDropDownMenu";
+// import { useNavigate } from "react-router";
 
 export default function PaytmDashboard() {
   const [balanceVisible, setBalanceVisible] = useState(true);
   const [selectedPeriod, setSelectedPeriod] = useState("7d");
   const router = useRouter();
   const setGlobalLoading = useSetRecoilState(globalLoading);
+  // const navigate = useNavigate();
 
   const quickActions = [
     {
@@ -334,7 +338,16 @@ export default function PaytmDashboard() {
               </div>
 
               <Button variant="ghost" size="icon">
-                <Settings className="h-5 w-5" />
+                <SettingsDropdown
+                  options={[
+                    {
+                      label: "Logout",
+                      onClick: () => {
+                        signOut({ callbackUrl: "/" });
+                      },
+                    },
+                  ]}
+                ></SettingsDropdown>
               </Button>
               {/* Notes icon (shown only on mobile) */}
               {/* <button className="text-gray-600 text-xl hover:text-gray-800 block lg:hidden">

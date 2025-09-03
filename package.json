@@ -4,7 +4,7 @@
   "scripts": {
     "build": "npm run db:generate && turbo build --filter=./apps/user-app",
     "dev": "turbo dev",
-    "user-app":"cd ./apps/user-app && npm run dev",
+    "user-app": "cd ./apps/user-app && npm run dev",
     "lint": "turbo lint",
     "db:generate": "cd packages/db && npx prisma generate && cd ../..",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -27,9 +27,10 @@
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "lucide-react": "^0.525.0",
-    "react-toastify": "^11.0.5",
     "react": "^18.3.1",
-  "react-dom": "^18.3.1",
-  "recoil": "^0.7.7"
+    "react-dom": "^18.3.1",
+    "react-intersection-observer": "^9.16.0",
+    "react-toastify": "^11.0.5",
+    "recoil": "^0.7.7"
   }
 }
