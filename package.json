@@ -1,12 +1,6 @@
 {
   "name": "week-18",
   "private": true,
-  "turbo":{
-    "env":[
-      "STRIPE_SECRET_KEY",
-      "DATABASE_URL"
-    ]
-  },
   "scripts": {
     "build": "npm run db:generate && turbo build --filter=./apps/user-app",
     "dev": "turbo dev",
