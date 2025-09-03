@@ -27,7 +27,7 @@ async function getBalance() {
     locked: balance?.locked || 0,
   };
 }
-
+//recent transactions
 async function getOnRampTransactions() {
   const session = await getServerSession(authOptions);
   const txns = await prisma.onRampTransaction.findMany({
