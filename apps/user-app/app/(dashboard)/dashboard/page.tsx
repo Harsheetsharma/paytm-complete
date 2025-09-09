@@ -346,6 +346,13 @@ export default function PaytmDashboard() {
                         signOut({ callbackUrl: "/" });
                       },
                     },
+                    // {
+                    //   label: "Source Code",
+                    //   onClick: () => {
+                    //     window.location.href =
+                    //       "https://github.com/harsheetsharma/paytm-complete";
+                    //   },
+                    // },
                   ]}
                 ></SettingsDropdown>
               </Button>

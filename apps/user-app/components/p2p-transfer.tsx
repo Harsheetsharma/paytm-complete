@@ -45,7 +45,7 @@ export default function () {
                     className: "toast-success",
                   });
                   setTimeout(() => {
-                    window.location.href = "/transfer";
+                    window.location.href = "/transactions";
                   }, 1000);
                 } else {
                   toast.error("Insufficient Funds!", {
