@@ -32,10 +32,21 @@ Modern digital wallets must handle concurrent payments, prevent duplicate transa
 - 🔄 Continuous deployment (CI/CD)
 
 ---
+## Payment Flow
 
+1.User initiates payment from dashboard
+2.Backend validates session & balance
+3.Idempotency key prevents duplicate requests
+4.Payment job is queued asynchronously
+5.Worker creates Stripe Payment Intent
+6.Stripe webhook confirms final status
+7.Database updated atomically
+8.Real-time UI update via WebSocket
+---
 ## System Architecture
 
----
+---<img width="1563" height="800" alt="Screenshot 2025-08-01 155849" src="https://github.com/user-attachments/assets/f25a0feb-978b-417a-ade7-7d9aadcf4333" />
+
 
 ## 📁 Project Structure
 
