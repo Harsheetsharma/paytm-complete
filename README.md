@@ -34,14 +34,14 @@ Modern digital wallets must handle concurrent payments, prevent duplicate transa
 ---
 ## Payment Flow
 
-1.User initiates payment from dashboard
-2.Backend validates session & balance
-3.Idempotency key prevents duplicate requests
-4.Payment job is queued asynchronously
-5.Worker creates Stripe Payment Intent
-6.Stripe webhook confirms final status
-7.Database updated atomically
-8.Real-time UI update via WebSocket
+- 1.User initiates payment from dashboard
+- 2.Backend validates session & balance
+- 3.Idempotency key prevents duplicate requests
+- 4.Payment job is queued asynchronously
+- 5.Worker creates Stripe Payment Intent
+- 6.Stripe webhook confirms final status
+- 7.Database updated atomically
+- 8.Real-time UI update via WebSocket
 ---
 ## System Architecture
 
