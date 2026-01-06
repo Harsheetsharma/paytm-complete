@@ -1,20 +1,21 @@
 # 💸 Paytm Clone - Full Stack Application
 
-This is a full-stack Paytm clone built with **Next.js**, **Prisma**, and **PostgreSQL**, supporting real-time transaction tracking, user authentication,Stripe payments , and balance management. It follows modern development practices with a **monorepo structure** and **CI/CD integration**.
+Modern digital wallets must handle concurrent payments, prevent duplicate transactions, process payments asynchronously, and provide real-time feedback to users. This project simulates a simplified Paytm-like wallet system focusing on correctness, idempotency, and system reliability rather than UI polish..
 
 ---
-✅ Stripe payment integration (Checkout flow)
----
+
+## ✅ Stripe payment integration (Checkout flow)
+
 ## 🚀 Tech Stack
 
-| Layer       | Technology                   |
-|-------------|------------------------------|
-| Frontend    | Next.js, Tailwind CSS        |
-| Backend     | Next.js API Routes, Prisma   |
-| Auth        | NextAuth.js (Credentials)    |
-| Database    | PostgreSQL (Docker)          |
-| DevOps      | GitHub Actions (CI/CD)       |
-| Monorepo    | Turborepo structure          |
+| Layer    | Technology                 |
+| -------- | -------------------------- |
+| Frontend | Next.js, Tailwind CSS      |
+| Backend  | Next.js API Routes, Prisma |
+| Auth     | NextAuth.js (Credentials)  |
+| Database | PostgreSQL (Docker)        |
+| DevOps   | GitHub Actions (CI/CD)     |
+| Monorepo | Turborepo structure        |
 
 ---
 
@@ -24,9 +25,10 @@ This is a full-stack Paytm clone built with **Next.js**, **Prisma**, and **Postg
 - 💰 Balance management for users
 - 🏬 Merchant payment flow
 - 📲 On-ramp transaction history
+- 📲 Race conditions
 - 🔐 Secure session-based authentication
 - 🧾 Transaction ledger per user
-- 📦 Clean monorepo structure
+- 📦 Clean turborepo structure
 - 🔄 Continuous deployment (CI/CD)
 
 ---
@@ -34,6 +36,7 @@ This is a full-stack Paytm clone built with **Next.js**, **Prisma**, and **Postg
 ## 📁 Project Structure
 
 paytm-complete/
+
 ```
 │
 ├── apps/
@@ -59,19 +62,26 @@ paytm-complete/
 git clone https://github.com/Harsheetsharma/paytm-complete.git
 cd paytm-complete
 ```
+
 ### 2. Install Dependencies
+
 ```
 npm install
 ```
+
 ### 3. Set up Environment Variables
+
 Create a .env file in the root and in packages/db based on .env.example.
+
 ```
 # Root .env
 DATABASE_URL=docker_database_URL
 NEXTAUTH_SECRET=your-secret
 NEXTAUTH_URL=http://localhost:3000
 ```
+
 ### 4. Migrate Database
+
 ```
 cd packages/db
 npx prisma migrate dev
