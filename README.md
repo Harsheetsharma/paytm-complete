@@ -33,6 +33,10 @@ Modern digital wallets must handle concurrent payments, prevent duplicate transa
 
 ---
 
+## System Architecture
+
+---
+
 ## 📁 Project Structure
 
 paytm-complete/
