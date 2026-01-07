@@ -41,7 +41,7 @@ Core Components
 
 ---
 
-🔁 End-to-End Payment Flow
+## 🔁 End-to-End Payment Flow
 
 - User initiates a payment from the dashboard
 - Backend validates authentication and input
@@ -75,17 +75,14 @@ Core Components
 - ### Why asynchronous payment processing?
 - Synchronous payment calls block the request lifecycle and increase failure impact.
 - Using a queue allows retries, isolation of failures, and better scalability.
+
 - ### Why idempotency keys?
 - Users may retry payments due to network issues or UI refreshes.
 - Idempotency keys ensure exactly-once payment intent creation, preventing double charges.
 
 - ### Why database transactions?
 - Balance updates and transaction status changes must be atomic.
-- Prisma transactions ensure consistency even under concurrent requests.
-
-- ### Why WebSockets instead of polling?
-- Polling increases unnecessary load and delays updates.
-- WebSockets provide instant feedback for payment status changes.
+- Prisma transactions with row level locking ensure consistency even under concurrent requests.
 
 ---
 
