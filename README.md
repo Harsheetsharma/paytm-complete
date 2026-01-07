@@ -56,6 +56,7 @@ Core Components
 - This ensures user requests are fast, while payment execution is reliable and retry-safe.
 
 ---
+
 ## Payment Flow
 
 - 1.User initiates payment from dashboard
@@ -66,11 +67,44 @@ Core Components
 - 6.Stripe webhook confirms final status
 - 7.Database updated atomically
 - 8.Real-time UI update via WebSocket
+
 ---
+
+## ⚙️ Key Engineering Decisions
+
+- ### Why asynchronous payment processing?
+- Synchronous payment calls block the request lifecycle and increase failure impact.
+- Using a queue allows retries, isolation of failures, and better scalability.
+- ### Why idempotency keys?
+- Users may retry payments due to network issues or UI refreshes.
+- Idempotency keys ensure exactly-once payment intent creation, preventing double charges.
+
+- ### Why database transactions?
+- Balance updates and transaction status changes must be atomic.
+- Prisma transactions ensure consistency even under concurrent requests.
+
+- ### Why WebSockets instead of polling?
+- Polling increases unnecessary load and delays updates.
+- WebSockets provide instant feedback for payment status changes.
+
+---
+
+## 🧪 Tech Stack
+
+|Layer | Technology |
+|Frontend | Next.js, Tailwind CSS |
+|Backend |Next.js API Routes |
+|Auth |NextAuth (Credentials Provider)|
+|Database |PostgreSQL, Prisma |
+|Queue/Cache |Redis |
+|Payments |Stripe |
+|DevOps |Turborepo, GitHub Actions |
+
+---
+
 ## System Architecture
 
 ---<img width="1563" height="800" alt="Screenshot 2025-08-01 155849" src="https://github.com/user-attachments/assets/f25a0feb-978b-417a-ade7-7d9aadcf4333" />
-
 
 ## 📁 Project Structure
 
