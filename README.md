@@ -103,9 +103,9 @@ Core Components
 ---
 
 ## System Architecture
+<img width="1886" height="776" alt="Screenshot 2026-01-07 142805" src="https://github.com/user-attachments/assets/5aa964ae-f2e0-44ec-b7a4-db810fbe8a25" />
 
----<img width="1563" height="800" alt="Screenshot 2025-08-01 155849" src="https://github.com/user-attachments/assets/f25a0feb-978b-417a-ade7-7d9aadcf4333" />
-
+---
 ## 📁 Project Structure
 
 paytm-complete/
