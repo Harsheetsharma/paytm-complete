@@ -91,14 +91,14 @@ Core Components
 
 ## 🧪 Tech Stack
 
-|Layer | Technology |
-|Frontend | Next.js, Tailwind CSS |
-|Backend |Next.js API Routes |
-|Auth |NextAuth (Credentials Provider)|
-|Database |PostgreSQL, Prisma |
-|Queue/Cache |Redis |
-|Payments |Stripe |
-|DevOps |Turborepo, GitHub Actions |
+- |Layer | Technology |
+- |Frontend | Next.js, Tailwind CSS |
+- |Backend |Next.js API Routes |
+- |Auth |NextAuth (Credentials Provider)|
+- |Database |PostgreSQL, Prisma |
+- |Queue/Cache |Redis |
+- |Payments |Stripe |
+- |DevOps |Turborepo, GitHub Actions |
 
 ---
 
