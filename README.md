@@ -1,35 +1,59 @@
-# 💸 Paytm Clone - Full Stack Application
+# 💸Problem statement
 
-Modern digital wallets must handle concurrent payments, prevent duplicate transactions, process payments asynchronously, and provide real-time feedback to users. This project simulates a simplified Paytm-like wallet system focusing on correctness, idempotency, and system reliability rather than UI polish..
+Modern digital wallet systems must handle concurrent payment requests, prevent duplicate transactions, process payments asynchronously, and provide real-time status updates to users — all while maintaining data consistency and reliability.
 
----
+This project simulates a Paytm-like digital wallet system, focusing on backend correctness and system design rather than UI polish. The goal was to design and implement a production-grade payment flow that handles real-world failure scenarios such as retries, race conditions, and webhook duplication.
 
-## ✅ Stripe payment integration (Checkout flow)
-
-## 🚀 Tech Stack
-
-| Layer    | Technology                 |
-| -------- | -------------------------- |
-| Frontend | Next.js, Tailwind CSS      |
-| Backend  | Next.js API Routes, Prisma |
-| Auth     | NextAuth.js (Credentials)  |
-| Database | PostgreSQL (Docker)        |
-| DevOps   | GitHub Actions (CI/CD)     |
-| Monorepo | Turborepo structure        |
+Primary focus: correctness, idempotency, async processing, and observability — not just feature count.
 
 ---
 
-## ✨ Features
+## 🎯 System Goals
 
-- ✅ User registration and login (NextAuth credentials provider)
-- 💰 Balance management for users
-- 🏬 Merchant payment flow
-- 📲 On-ramp transaction history
-- 📲 Race conditions
-- 🔐 Secure session-based authentication
-- 🧾 Transaction ledger per user
-- 📦 Clean turborepo structure
-- 🔄 Continuous deployment (CI/CD)
+- Prevent duplicate or double payments
+- Handle concurrent requests safely
+- Process payments asynchronously
+- Maintain accurate user balances
+- Provide real-time transaction status updates
+- Remain resilient to failures (network, webhook retries, worker crashes)
+
+---
+
+## 🏗️ Architecture Overview
+
+Core Components
+
+- ### Web Client
+  Next.js application for user interaction (dashboard, payments, history)
+- ### API Layer
+  Handles authentication, validation, idempotency enforcement, and transaction creation
+- ### Database (PostgreSQL + Prisma)
+  Stores users, balances, transactions, and ledger entries with transactional guarantees
+- ### Redis
+  Used for idempotency keys and asynchronous job queuing
+- ### Worker Service
+  Processes payment jobs independently from API requests
+- ### Stripe
+  External payment processor using Payment Intents
+- ### Webhooks
+  Receives final payment status from Stripe
+  The system is designed to decouple user requests from payment execution to improve reliability and scalability.
+
+---
+
+🔁 End-to-End Payment Flow
+
+- User initiates a payment from the dashboard
+- Backend validates authentication and input
+- An idempotency key is generated and checked to prevent duplicate requests
+- A payment record is created in the database with status PENDING
+- A payment job is pushed to a Redis queue
+- Worker service consumes the job
+- Worker creates a Stripe Payment Intent
+- Stripe processes the payment asynchronously
+- Stripe sends the final status via webhook
+- Webhook handler updates the database atomically (SUCCESS / FAILED)
+- This ensures user requests are fast, while payment execution is reliable and retry-safe.
 
 ---
 
